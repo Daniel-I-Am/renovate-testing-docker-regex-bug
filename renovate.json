@@ -1,0 +1,33 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "enabledManagers": ["dockerfile", "docker-compose"],
+  "dockerfile": {
+      "enabled": true,
+      "pinVersions": false
+  },
+  "docker-compose": {
+      "enabled": true,
+      "pinVersions": false
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "matchUpdateTypes": ["pin", "pinDigest"],
+      "enabled": false
+    },
+    {
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "matchPackagePatterns": ["^python"],
+      "versioning": "regex:^(?<major>\\d+)(?:\\.(?<minor>\\d+)(?:\\.(?<patch>\\d+))?)?(?:-(?<prerelease>(?:test)\\d+))?(?:-(?:(?:build)?(?<build>\\d+)))?(?:-(?<compatibility>\\w[\\w\\d]+))?$"
+    }
+  ],
+  "reviewers": [
+    "Daniel-I-Am"
+  ],
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 0,
+  "schedule": [
+      "every weekday"
+  ],
+  "branchPrefix": "renovate-"
+}
